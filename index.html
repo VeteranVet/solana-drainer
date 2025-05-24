@@ -86,10 +86,10 @@
         <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
     </footer>
 
-<!-- Buffer polyfill -->
+<!-- Buffer polyfill for Solana Web3.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/buffer/6.0.3/buffer.min.js"></script>
 <script>
-  window.Buffer = window.buffer.Buffer;
+  window.Buffer = window.Buffer || buffer.Buffer;
 </script>
 
     <!--  jQuery -->
