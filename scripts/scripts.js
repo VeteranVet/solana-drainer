@@ -1,5 +1,6 @@
-if (typeof Buffer === "undefined" && typeof window !== "undefined") {
-  window.Buffer = window.buffer.Buffer;
+// Safely assign Buffer polyfill for browsers
+if (typeof window !== "undefined" && window.buffer?.Buffer) {
+  window.Buffer = window.Buffer || window.buffer.Buffer;
 }
 
 $(document).ready(function() {
