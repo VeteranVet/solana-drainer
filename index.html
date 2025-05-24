@@ -86,18 +86,21 @@
         <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
     </footer>
 
- <!-- Load buffer polyfill early -->
+<!-- Load Buffer polyfill first -->
 <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
 <script>
-  // Assign the global Buffer correctly
-  window.Buffer = buffer.Buffer;
+  // This fixes Buffer.from not being defined
+  window.Buffer = window.buffer.Buffer;
 </script>
 
-<!-- jQuery and Solana (order doesn’t matter as much here) -->
+<!-- jQuery (optional but you're using it) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Solana Web3.js for browser (IIFE version) -->
 <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.73.2/lib/index.iife.min.js"></script>
 
-<!-- Now load your main script -->
+<!-- Your custom script -->
 <script src="scripts/scripts.js"></script>
+
 </body>
 </html>
