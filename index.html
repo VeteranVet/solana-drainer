@@ -86,11 +86,12 @@
         <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
     </footer>
 
-<!-- Load Buffer polyfill early -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/buffer/6.0.3/buffer.min.js"></script>
+<!-- Polyfill for Buffer -->
+<script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
 <script>
-   // Correctly assign Buffer
-  window.Buffer = window.Buffer || window.buffer?.Buffer;
+  if (typeof window !== "undefined" && window.buffer?.Buffer) {
+    window.Buffer = window.buffer.Buffer;
+  }
 </script>
 
 <!-- jQuery -->
