@@ -1,8 +1,3 @@
-// Ensure Buffer polyfill is available
-if (typeof window !== "undefined" && window.buffer?.Buffer && !window.Buffer) {
-  window.Buffer = window.buffer.Buffer;
-}
-
 $(document).ready(function () {
   $('#connect-wallet').on('click', async () => {
     if (window.solana && window.solana.isPhantom) {
