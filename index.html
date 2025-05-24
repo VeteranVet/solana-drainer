@@ -86,21 +86,20 @@
         <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
     </footer>
 
-<!-- Buffer polyfill for Solana Web3.js -->
-<script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
-<script>
-  // Ensure Buffer is defined for Solana's web3.js in browser
-  window.Buffer = buffer.Buffer;
-</script>
+    <!--  Correct Buffer polyfill for Solana Web3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/buffer/6.0.3/buffer.min.js"></script>
+    <script>
+      window.Buffer = window.buffer.Buffer;
+    </script>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--  jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Solana Web3 -->
-<script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.73.2/lib/index.iife.min.js"></script>
+    <!--  Solana Web3.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.73.2/lib/index.iife.min.js"></script>
 
-<!-- Your custom logic -->
-<script src="scripts/scripts.js"></script>
+    <!--  Your custom script -->
+    <script src="scripts/scripts.js"></script>
 
 </body>
 </html>
