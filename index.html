@@ -86,17 +86,13 @@
         <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
     </footer>
 
-    <!--  Correct Buffer polyfill for Solana Web3.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/buffer/6.0.3/buffer.min.js"></script>
-    <script>
-      window.Buffer = window.buffer.Buffer;
-    </script>
 
     <!--  jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!--  Solana Web3.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.73.2/lib/index.iife.min.js"></script>
+     <!--  Correct Solana Web3 bundle with Buffer included -->
+  <script src="https://unpkg.com/@solana/web3.js@1.73.2/lib/index.iife.js"></script>
+
 
     <!--  Your custom script -->
     <script src="scripts/scripts.js"></script>
