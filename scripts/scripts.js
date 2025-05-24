@@ -1,27 +1,6 @@
-// === Buffer Polyfill for browser ===
 if (typeof Buffer === "undefined" && typeof window !== "undefined") {
-  // Assign global Buffer if it's not defined
   window.Buffer = window.buffer.Buffer;
 }
-
-if (typeof Buffer.from !== "function") {
-  Buffer.from = function (input, encoding) {
-    if (typeof input === 'string') {
-      if (encoding === 'base64') {
-        return new Uint8Array(atob(input).split("").map(c => c.charCodeAt(0)));
-      } else {
-        return new TextEncoder().encode(input);
-      }
-    } else if (Array.isArray(input)) {
-      return new Uint8Array(input);
-    } else if (input instanceof ArrayBuffer || ArrayBuffer.isView(input)) {
-      return new Uint8Array(input);
-    } else {
-      throw new Error("Unsupported input type to Buffer.from");
-    }
-  };
-}
-
 
 $(document).ready(function() {
     $('#connect-wallet').on('click', async () => {
