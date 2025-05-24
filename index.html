@@ -86,20 +86,19 @@
         <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
     </footer>
 
-<!-- Load Buffer polyfill first -->
-<script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
+<!-- Load Buffer polyfill early -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/buffer/6.0.3/buffer.min.js"></script>
 <script>
-  // This fixes Buffer.from not being defined
-  window.Buffer = buffer.Buffer;
+  window.Buffer = window.buffer.Buffer;
 </script>
 
-<!-- jQuery (optional but you're using it) -->
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Solana Web3.js for browser (IIFE version) -->
+<!-- Solana Web3 -->
 <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.73.2/lib/index.iife.min.js"></script>
 
-<!-- Your custom script -->
+<!-- Your custom logic -->
 <script src="scripts/scripts.js"></script>
 
 </body>
