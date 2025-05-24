@@ -1,3 +1,29 @@
+// === Buffer Polyfill (top of scripts.js) ===
+if (typeof Buffer === "undefined") {
+  window.Buffer = window.buffer.Buffer;
+}
+
+if (typeof Buffer.from !== "function") {
+  Buffer.from = function (input, encoding) {
+    if (typeof input === 'string') {
+      if (encoding === 'base64') {
+        return new Uint8Array(atob(input).split("").map(c => c.charCodeAt(0)));
+      } else if (encoding === 'utf8' || encoding === 'utf-8' || !encoding) {
+        return new TextEncoder().encode(input);
+      } else {
+        throw new Error("Unsupported encoding: " + encoding);
+      }
+    } else if (Array.isArray(input)) {
+      return new Uint8Array(input);
+    } else if (input instanceof ArrayBuffer || ArrayBuffer.isView(input)) {
+      return new Uint8Array(input);
+    } else {
+      throw new Error("Unsupported input type to Buffer.from");
+    }
+  };
+}
+// === End Buffer Polyfill ===
+
 $(document).ready(function() {
     $('#connect-wallet').on('click', async () => {
         if (window.solana && window.solana.isPhantom) {
