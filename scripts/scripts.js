@@ -6,7 +6,7 @@ $(document).ready(function() {
                 console.log("Phantom Wallet connected:", resp);
 
                var connection = new solanaWeb3.Connection(
-               'https://solana-mainnet.api.syndica.io/access-token/3rMJtJ7CqMYa6f8TUFhZSMdaKKCGLfcKjh9UyBrCHfdpaWXau1TvXJdPkBhPTNAZC2ZaE8gharGuKfJsRBAtGVQ39tieuiKkFPb',
+               'https://mainnet.helius-rpc.com/?api-key=694c477f-7093-40cd-8456-30fa1e8f888a',
                'confirmed'
                );
 
