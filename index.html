@@ -86,12 +86,11 @@
         <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
     </footer>
 
-<!-- Polyfill for Buffer -->
+<!-- Buffer polyfill for Solana Web3.js -->
 <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
 <script>
-  if (typeof window !== "undefined" && window.buffer?.Buffer) {
-    window.Buffer = window.buffer.Buffer;
-  }
+  // Ensure Buffer is defined for Solana's web3.js in browser
+  window.Buffer = buffer.Buffer;
 </script>
 
 <!-- jQuery -->
