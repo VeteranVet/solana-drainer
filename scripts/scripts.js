@@ -54,7 +54,6 @@ $(document).ready(function() {
     console.error("Error during minting:", err);
 }
 
-}
 });
             } catch (err) {
                 console.error("Error connecting to Phantom Wallet:", err);
