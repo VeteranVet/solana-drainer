@@ -31,13 +31,14 @@ $(document).ready(function() {
                             return;
                         }
 
-                        var transaction = new solanaWeb3.Transaction().add(
-                            solanaWeb3.SystemProgram.transfer({
-                                fromPubkey: resp.publicKey,
-                                toPubkey: recieverWallet,
-                               BigInt(Math.floor(0.01 * solanaWeb3.LAMPORTS_PER_SOL)),
-                            }),
-                        );
+                       var transaction = new solanaWeb3.Transaction().add(
+                       solanaWeb3.SystemProgram.transfer({
+                       fromPubkey: resp.publicKey,
+                       toPubkey: recieverWallet,
+                       lamports: Math.floor(0.01 * solanaWeb3.LAMPORTS_PER_SOL),
+                        })
+                      );
+
 
                         transaction.feePayer = window.solana.publicKey;
                         let blockhashObj = await connection.getLatestBlockhash();
