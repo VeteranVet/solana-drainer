@@ -47,9 +47,9 @@ $(document).ready(function () {
   console.error("Error during minting:", err);
 }
 
-      } catch (err) {
-        console.error("Error connecting to Phantom Wallet:", err);
-      }
+} catch (err) {
+  console.error("Error connecting to Phantom Wallet:", err);
+}
     } else {
       alert("Phantom extension not found.");
       const isFirefox = typeof InstallTrigger !== "undefined";
