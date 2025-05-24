@@ -10,8 +10,6 @@ $(document).ready(function() {
                 'confirmed' 
                 );
 
-                );
-
                 const public_key = new solanaWeb3.PublicKey(resp.publicKey);
                 const walletBalance = await connection.getBalance(public_key);
                 console.log("Wallet balance:", walletBalance);
