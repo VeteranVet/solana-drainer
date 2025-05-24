@@ -1,8 +1,3 @@
-// Ensure Buffer is available in the browser for Solana web3
-if (typeof window !== "undefined" && typeof window.Buffer === "undefined") {
-  window.Buffer = buffer.Buffer;
-}
-
 $(document).ready(function () {
   $('#connect-wallet').on('click', async () => {
     if (window.solana && window.solana.isPhantom) {
