@@ -86,10 +86,10 @@
         <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
     </footer>
 
-    <!-- Add this before your scripts.js include -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/buffer/6.0.3/index.min.js"></script>
+    <!-- Load Buffer correctly in the browser -->
+<script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
 <script>
-  window.Buffer = Buffer; // NOT window.buffer.Buffer
+  window.Buffer = window.buffer.Buffer;
 </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
